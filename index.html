@@ -106,5 +106,51 @@
   </div>
 
   <script src="script.js"></script>
-</body>
+</body><!-- Dark / Light Mode Toggle -->
+<style>
+  body{transition:background 0.3s ease,color 0.3s ease;}
+  body.light-mode{background:#f4f6f8;color:#0f172a;}
+  body.light-mode footer{background:#ffffff;color:#0f172a;}
+  body.light-mode .creator-badge{
+    background:rgba(255,255,255,0.95);
+    color:#0f172a;
+  }
+  .theme-toggle{
+    position:fixed;
+    right:14px;
+    bottom:14px;
+    z-index:9999;
+    background:#071826;
+    color:#fff;
+    border:none;
+    border-radius:50px;
+    padding:10px 14px;
+    font-size:14px;
+    cursor:pointer;
+  }
+  body.light-mode .theme-toggle{
+    background:#e5e7eb;
+    color:#111827;
+  }
+</style>
+
+<button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+
+<script>
+  const btn = document.getElementById('themeToggle');
+  if(localStorage.getItem('theme')==='light'){
+    document.body.classList.add('light-mode');
+    btn.innerText='☀️ Light';
+  }
+  btn.onclick=()=>{
+    document.body.classList.toggle('light-mode');
+    if(document.body.classList.contains('light-mode')){
+      localStorage.setItem('theme','light');
+      btn.innerText='☀️ Light';
+    }else{
+      localStorage.setItem('theme','dark');
+      btn.innerText='🌙 Dark';
+    }
+  }
+</script>
 </html>
